@@ -6,8 +6,17 @@
  * To change this template use File | Settings | File Templates.
  */
 package com.ichinco.road {
-public class Intersection extends RoadSegment {
+public class Intersection implements RoadSegment {
     public function Intersection() {
+    }
+
+    public function enter(c:CarPosition):void {
+    }
+
+    public function getExitingCars():Vector.<CarPosition> {
+    }
+
+    public function advance(seconds:int):void {
     }
 }
 }

@@ -6,12 +6,12 @@
  * To change this template use File | Settings | File Templates.
  */
 package com.ichinco.road {
-public class RoadSegment {
+public interface RoadSegment {
 
-    private var length:int;
-    private var lanes:int;
+    function enter(c:CarPosition):void;
+    function getExitingCars():Vector.<CarPosition>;
+    function advance(seconds:int):void;
 
-    public function RoadSegment() {
-    }
+
 }
 }

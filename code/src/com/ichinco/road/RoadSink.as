@@ -6,7 +6,18 @@
  * To change this template use File | Settings | File Templates.
  */
 package com.ichinco.road {
-public class RoadSink extends RoadSegment {
+public class RoadSink implements RoadSegment {
+
+    public function enter(c:CarPosition):void {
+    }
+
+    public function getExitingCars():Vector.<CarPosition> {
+        return new Vector.<CarPosition>();
+    }
+
+    public function advance(seconds:int):void {
+    }
+
     public function RoadSink() {
     }
 }
