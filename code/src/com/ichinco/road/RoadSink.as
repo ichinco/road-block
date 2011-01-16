@@ -8,7 +8,7 @@
 package com.ichinco.road {
 public class RoadSink implements RoadSegment {
 
-    public function get length():int {
+    public function getLength():int {
         return 0;
     }
 

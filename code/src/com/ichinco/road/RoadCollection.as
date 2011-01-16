@@ -10,11 +10,11 @@ public class RoadCollection {
 
     private var segments:Vector.<RoadSegment>;
 
-    public function addRoadSegmentAt(index:int, road:RoadSegment){
+    public function addRoadSegmentAt(index:int, road:RoadSegment):void{
         segments[index] = road;
     }
 
-    public function appendRoadSegment(road:RoadSegment){
+    public function appendRoadSegment(road:RoadSegment):void{
         segments[segments.length] = road;
     }
 
@@ -29,10 +29,12 @@ public class RoadCollection {
     public function drawRoadSegments():void{
         var x:int = 10;
         var y:int = 10;
-        for (var segment in segments){
-            segment.drawAt(x, y);
-            y += segment.length;
-        }
+        segments.forEach(
+                        function (segment:RoadSegment):void{
+                            segment.drawAt(x, y);
+                            y += segment.getLength();
+                        }
+                );
     }
 
     public function RoadCollection() {

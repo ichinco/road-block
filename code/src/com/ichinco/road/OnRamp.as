@@ -21,5 +21,9 @@ public class OnRamp implements RoadSegment {
 
     public function drawAt(x:int, y:int):void {
     }
+
+    public function getLength():int {
+        return 0;
+    }
 }
 }

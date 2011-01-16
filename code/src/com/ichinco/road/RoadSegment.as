@@ -12,6 +12,7 @@ public interface RoadSegment {
     function getExitingCars():Vector.<CarPosition>;
     function advance(seconds:int):void;
     function drawAt(x:int, y:int):void;
+    function getLength():int;
 
 }
 }

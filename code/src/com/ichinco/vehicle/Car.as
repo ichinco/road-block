@@ -40,7 +40,7 @@ public class Car extends Sprite {
         return this.speed * (deltaSeconds / 3600);
     }
 
-    public function drawAt(x:int, y:int){
+    public function drawAt(x:int, y:int):void{
         this.graphics.lineStyle(2, 0x000000, 1);
         var left:int = x-(this.width * .5);
         var right:int = x+(this.width * .5);

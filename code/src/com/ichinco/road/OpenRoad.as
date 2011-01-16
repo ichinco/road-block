@@ -6,18 +6,16 @@
  * To change this template use File | Settings | File Templates.
  */
 package com.ichinco.road {
+import com.ichinco.vehicle.Car;
+
 import flash.display.Sprite;
 
 public class OpenRoad extends Sprite implements RoadSegment  {
 
     private var _length:int;
-    private var width:int;
+    private var _width:int;
     private var cars:Vector.<CarPosition>;
     private var exitingCars:Vector.<CarPosition>;
-
-    public function get length():int {
-        return _length;
-    }
 
     public function enter(c:CarPosition):void {
         cars[cars.length] = c;
@@ -29,31 +27,39 @@ public class OpenRoad extends Sprite implements RoadSegment  {
         return exitingCars;
     }
 
+    public function getLength():int {
+        return this._length;
+    }
+
     public function advance(seconds:int):void {
         exitingCars = new Vector.<CarPosition>();
-        for (var car in cars){
-            car.relativePositionY = car.car.advanceBySeconds(seconds);
-            if (car.relativePositionY > this.length) {
-                exitingCars[exitingCars.length] = car;
-            }
-        }
+        cars.forEach(
+                    function (car:CarPosition):void{
+                        car.relativePositionY = car.car.advanceBySeconds(seconds);
+                        if (car.relativePositionY > this._length) {
+                            exitingCars[exitingCars.length] = car;
+                        }
+                    }
+                );
     }
 
     public function drawAt(x:int, y:int):void {
         this.graphics.lineStyle(2, 0x000000, 1);
         this.graphics.moveTo(x,y);
         this.graphics.lineTo(x,y+length);
-        this.graphics.moveTo(x+width, y);
-        this.graphics.lineTo(x+width, y+length);
+        this.graphics.moveTo(x+_width, y);
+        this.graphics.lineTo(x+_width, y+length);
 
-        for (var car in cars){
-            car.car.drawAt(width * .5, car.relativePositionY);
-        }
+        cars.forEach(
+                    function (car:CarPosition):void{
+                        car.car.drawAt(_width * .5, car.relativePositionY);
+                    }
+                );
     }
 
     public function OpenRoad(width:int, length:int) {
         cars = new Vector.<CarPosition>();
-        this.width = width;
+        this._width = width;
         this._length = length;
     }
 }

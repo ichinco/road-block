@@ -14,23 +14,29 @@ import com.ichinco.road.RoadSink;
 import com.ichinco.road.RoadSource;
 import com.ichinco.vehicle.Car;
 
-public class Simulator {
+import flash.display.Sprite;
+
+public class Simulator extends Sprite {
 
     private var roadSet:RoadCollection;
     private static var interval:int = 1;
 
     public function simulate():void{
-        for(var i=0; i<roadSet.getNumberOfSegments(); i++){
+        for(var i:int=0; i<roadSet.getNumberOfSegments(); i++){
             roadSet.getSegmentAt(i).advance(interval);
         }
 
-        for (var i=0; i<roadSet.getNumberOfSegments()-1; i++){
-            var exitingCars:Vector.<CarPosition> = roadSet.getSegmentAt(i).getExitingCars();
-            var nextSegment:RoadSegment = roadSet.getSegmentAt(i+1);
-            for (var car in exitingCars){
-                nextSegment.enter(car);
-            }
+        for (var j:int=0; j<roadSet.getNumberOfSegments()-1; j++){
+            var exitingCars:Vector.<CarPosition> = roadSet.getSegmentAt(j).getExitingCars();
+            var nextSegment:RoadSegment = roadSet.getSegmentAt(j+1);
+            exitingCars.forEach(
+                               function (car:CarPosition):void{
+                                   nextSegment.enter(car);
+                               }
+                    );
         }
+
+        roadSet.drawRoadSegments();
     }
 
     public function setup():void {
@@ -41,6 +47,8 @@ public class Simulator {
         roadSet.appendRoadSegment(roadSource);
         roadSet.appendRoadSegment(openRoad);
         roadSet.appendRoadSegment(roadSink);
+
+        roadSet.drawRoadSegments();
     }
 
     public function Simulator() {

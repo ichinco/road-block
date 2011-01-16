@@ -18,16 +18,16 @@ public class RoadSource implements RoadSegment {
         _framesBetweenCars = value;
     }
 
+    public function getLength():int {
+        return 0;
+    }
+
     public function enter(c:CarPosition):void {
         exitingCars[exitingCars.length] = c;
     }
 
     public function getExitingCars():Vector.<CarPosition> {
         return this.exitingCars;
-    }
-
-    public function get length():int {
-        return 0;
     }
 
     public function advance(seconds:int):void {
