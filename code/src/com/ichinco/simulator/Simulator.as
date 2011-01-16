@@ -7,8 +7,11 @@
  */
 package com.ichinco.simulator {
 import com.ichinco.road.CarPosition;
+import com.ichinco.road.OpenRoad;
 import com.ichinco.road.RoadCollection;
 import com.ichinco.road.RoadSegment;
+import com.ichinco.road.RoadSink;
+import com.ichinco.road.RoadSource;
 import com.ichinco.vehicle.Car;
 
 public class Simulator {
@@ -16,7 +19,7 @@ public class Simulator {
     private var roadSet:RoadCollection;
     private static var interval:int = 1;
 
-    public function simulate(){
+    public function simulate():void{
         for(var i=0; i<roadSet.getNumberOfSegments(); i++){
             roadSet.getSegmentAt(i).advance(interval);
         }
@@ -30,7 +33,18 @@ public class Simulator {
         }
     }
 
+    public function setup():void {
+        var roadSource:RoadSource = new RoadSource();
+        var roadSink:RoadSink = new RoadSink();
+        var openRoad:OpenRoad = new OpenRoad(10,40);
+
+        roadSet.appendRoadSegment(roadSource);
+        roadSet.appendRoadSegment(openRoad);
+        roadSet.appendRoadSegment(roadSink);
+    }
+
     public function Simulator() {
+        roadSet = new RoadCollection();
     }
 }
 }

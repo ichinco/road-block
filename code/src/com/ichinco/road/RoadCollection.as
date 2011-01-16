@@ -26,6 +26,15 @@ public class RoadCollection {
         return segments.length;
     }
 
+    public function drawRoadSegments():void{
+        var x:int = 10;
+        var y:int = 10;
+        for (var segment in segments){
+            segment.drawAt(x, y);
+            y += segment.length;
+        }
+    }
+
     public function RoadCollection() {
         segments = new Vector.<RoadSegment>();
     }

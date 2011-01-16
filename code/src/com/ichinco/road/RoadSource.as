@@ -6,6 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 package com.ichinco.road {
+import com.ichinco.vehicle.Car;
+
 public class RoadSource implements RoadSegment {
 
     private var _framesBetweenCars:int;
@@ -24,14 +26,22 @@ public class RoadSource implements RoadSegment {
         return this.exitingCars;
     }
 
+    public function get length():int {
+        return 0;
+    }
+
     public function advance(seconds:int):void {
         exitingCars = new Vector.<CarPosition>();
         if (framesSinceLastCar >= _framesBetweenCars){
             //generate car and add to exiting cars
+            this.exitingCars[exitingCars.length] = new CarPosition(new Car(4, 0, 6, 4));
             framesSinceLastCar = 0;
         } else {
             framesSinceLastCar += seconds;
         }
+    }
+
+    public function drawAt(x:int, y:int):void {
     }
 
     public function RoadSource() {

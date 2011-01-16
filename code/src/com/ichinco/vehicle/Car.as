@@ -6,7 +6,9 @@
  * To change this template use File | Settings | File Templates.
  */
 package com.ichinco.vehicle {
-public class Car {
+import flash.display.Sprite;
+
+public class Car extends Sprite {
 
     private var speed:int;
     private var acceleration:int;
@@ -33,11 +35,31 @@ public class Car {
     }
 
     public function advanceBySeconds(deltaSeconds:int):int {
+        this.speed = this._preferredSpeed;
         this.speed += this.acceleration * (deltaSeconds / 3600);
         return this.speed * (deltaSeconds / 3600);
     }
 
-    public function Car() {
+    public function drawAt(x:int, y:int){
+        this.graphics.lineStyle(2, 0x000000, 1);
+        var left:int = x-(this.width * .5);
+        var right:int = x+(this.width * .5);
+        var top:int = y+(this.height * .5);
+        var bottom:int = y-(this.height * .5);
+
+        this.graphics.moveTo(left, bottom);
+        this.graphics.beginFill(0x000000);
+        this.graphics.lineTo(left, top);
+        this.graphics.lineTo(right, top);
+        this.graphics.lineTo(right, bottom);
+        this.graphics.lineTo(left, bottom);
+    }
+
+    public function Car(preferredSpeed:int, maxAcceleration:int, width:int, length:int) {
+        this._preferredSpeed = preferredSpeed;
+        this._maxAcceleration = maxAcceleration;
+        this._carWidth = width;
+        this._carLength = length;
     }
 }
 }

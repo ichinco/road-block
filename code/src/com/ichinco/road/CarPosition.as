@@ -38,7 +38,8 @@ public class CarPosition {
         _relativePositionY = value;
     }
 
-    public function CarPosition() {
+    public function CarPosition(car:Car) {
+        this._car = car;
     }
 }
 }

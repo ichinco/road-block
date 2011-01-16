@@ -6,14 +6,21 @@
  * To change this template use File | Settings | File Templates.
  */
 package com.ichinco.road {
-public class OpenRoad implements RoadSegment {
+import flash.display.Sprite;
 
-    private var length:int;
+public class OpenRoad extends Sprite implements RoadSegment  {
+
+    private var _length:int;
+    private var width:int;
     private var cars:Vector.<CarPosition>;
     private var exitingCars:Vector.<CarPosition>;
 
+    public function get length():int {
+        return _length;
+    }
+
     public function enter(c:CarPosition):void {
-        cars[length] = c;
+        cars[cars.length] = c;
         c.road = this;
         c.relativePositionY = 0;
     }
@@ -32,9 +39,22 @@ public class OpenRoad implements RoadSegment {
         }
     }
 
-    public function OpenRoad() {
-        cars = new Vector.<CarPosition>();
+    public function drawAt(x:int, y:int):void {
+        this.graphics.lineStyle(2, 0x000000, 1);
+        this.graphics.moveTo(x,y);
+        this.graphics.lineTo(x,y+length);
+        this.graphics.moveTo(x+width, y);
+        this.graphics.lineTo(x+width, y+length);
+
+        for (var car in cars){
+            car.car.drawAt(width * .5, car.relativePositionY);
+        }
     }
 
+    public function OpenRoad(width:int, length:int) {
+        cars = new Vector.<CarPosition>();
+        this.width = width;
+        this._length = length;
+    }
 }
 }

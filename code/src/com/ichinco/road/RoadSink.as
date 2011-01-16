@@ -8,6 +8,10 @@
 package com.ichinco.road {
 public class RoadSink implements RoadSegment {
 
+    public function get length():int {
+        return 0;
+    }
+
     public function enter(c:CarPosition):void {
     }
 
@@ -16,6 +20,9 @@ public class RoadSink implements RoadSegment {
     }
 
     public function advance(seconds:int):void {
+    }
+
+    public function drawAt(x:int, y:int):void {
     }
 
     public function RoadSink() {

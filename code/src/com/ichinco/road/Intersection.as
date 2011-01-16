@@ -18,5 +18,8 @@ public class Intersection implements RoadSegment {
 
     public function advance(seconds:int):void {
     }
+
+    public function drawAt(x:int, y:int):void {
+    }
 }
 }
