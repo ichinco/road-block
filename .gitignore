@@ -3,3 +3,8 @@
 *.iml
 *.ipr
 *.iws
+
+#output
+target/*
+*.log
+*.db
