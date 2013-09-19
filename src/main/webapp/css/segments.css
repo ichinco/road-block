@@ -1,5 +1,21 @@
 .straight-segment {
     border : solid black 1px;
-    height : 75px;
-    width : 50px;
+    margin: 0;
 }
+
+.border-left {
+    border-left: solid black 1px;
+}
+
+.border-right {
+    border-right: solid black 1px;
+}
+
+.border-top {
+    border-top: solid black 1px;
+}
+
+.border-bottom {
+    border-bottom: solid black 1px;
+}
+ 

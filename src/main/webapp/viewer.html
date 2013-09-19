@@ -1,12 +1,19 @@
-<html>
+<html ng-app>
   <head>
     <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="/css/segments.css">
+    <script src="/external-js/angular/angular.min.js"></script>
+    <script src="/js/controllers/RoadNetworkController.js"></script>
   </head>
   <body>
     <div id="main">
-        <div class="straight-segment"></div>
+        <div class="road" ng-controller="RoadNetworkController">
+            <div ng-repeat="segment in segments">
+                <div ng-class="{'border-left':!segment.left, 'border-right': !segment.right, 'border-top':!segment.top, 'border-bottom':!segment.bottom}"
+                     style="left:{{segment.x}}*50; top:{{segment.y}}*50; width:50px; height:50px"></div>
+            </div>
+        </div>
     </div>
   </body>
 </html>
