@@ -6,5 +6,5 @@ package roadblock.lib.interfaces
  * Time: 4:32 PM
  */
 trait Car {
-  def tick(segments: List[RoadSegment])
+  def tick(segments: RoadNetwork)
 }

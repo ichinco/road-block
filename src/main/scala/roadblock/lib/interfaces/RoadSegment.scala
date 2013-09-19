@@ -12,6 +12,8 @@ trait RoadSegment {
   def leftSideNeighbor : RoadSegment
   def rightSideNeighbor : RoadSegment
 
+  def tick()
+
   def acceptCar(car : Car) = {
     new RoadState {
       def isOccupied(): Boolean = true
@@ -30,6 +32,8 @@ trait RoadSegment {
   def unacceptCar(car : Car) = {
     new RoadState {
       def isOccupied(): Boolean = false
+
+      def isCollided(): Boolean = false
 
       def forwardMotionPermitted(): Boolean = frontNeighbor != null
 
