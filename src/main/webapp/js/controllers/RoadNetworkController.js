@@ -6,9 +6,10 @@
  * To change this template use File | Settings | File Templates.
  */
 
-function RoadNetworkController($scope) {
-    var height = 50;
-    var width = 50;
+function RoadNetworkController($scope, $html) {
+    $http.get('phones/phones.json').success(function(data) {
+        $scope.segments = data;
+    });
 
     $scope.segments = [
         {type: "straight-segment", x: 0, y: 0, left:false, right: false, top: false, bottom: true},

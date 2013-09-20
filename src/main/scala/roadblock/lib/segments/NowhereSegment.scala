@@ -13,6 +13,7 @@ class NowhereSegment extends RoadSegment {
   def frontNeighbor:RoadSegment = null
   def leftSideNeighbor:RoadSegment = null
   def rightSideNeighbor: RoadSegment = null
+  def segmentType : Symbol = 'no_segment
   def state: RoadState = new RoadState {
     def isOccupied(): Boolean = false
 

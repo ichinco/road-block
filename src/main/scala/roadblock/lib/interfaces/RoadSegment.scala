@@ -11,6 +11,7 @@ trait RoadSegment {
   def backNeighbor : RoadSegment
   def leftSideNeighbor : RoadSegment
   def rightSideNeighbor : RoadSegment
+  def segmentType : Symbol
 
   def tick()
 

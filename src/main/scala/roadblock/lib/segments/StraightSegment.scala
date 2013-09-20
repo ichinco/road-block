@@ -13,6 +13,7 @@ class StraightSegment extends RoadSegment {
   def leftSideNeighbor: roadblock.lib.interfaces.RoadSegment = new NowhereSegment()
   def rightSideNeighbor: roadblock.lib.interfaces.RoadSegment = new NowhereSegment()
   def state: roadblock.lib.interfaces.RoadState = null
+  def segmentType : Symbol = 'straight_segment
 
   def tick() {
     // nothing changes for a regular piece of road each second
