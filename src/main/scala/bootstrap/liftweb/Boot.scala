@@ -13,8 +13,6 @@ import mapper._
 
 import roadblock.model._
 import net.liftmodules.JQueryModule
-import roadblock.lib.rest.RoadNetworkRestResponder
-
 
 /**
  * A class that's instantiated early and run.  It allows the application
@@ -41,7 +39,6 @@ class Boot {
 
     // where to search snippet
     LiftRules.addToPackages("roadblock")
-    LiftRules.statelessDispatch.append(RoadNetworkRestResponder)
 
     // Build SiteMap
     def sitemap = SiteMap(

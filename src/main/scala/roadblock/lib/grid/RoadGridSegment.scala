@@ -10,13 +10,13 @@ import scala.xml.Node
  * Time: 4:21 PM
  */
 class RoadGridSegment {
-  var segmentType : Symbol
-  var x: Integer
-  var y: Integer
-  var top : Boolean
-  var bottom : Boolean
-  var left : Boolean
-  var right : Boolean
+  var segmentType : Symbol = 'none
+  var x: Integer = 0
+  var y: Integer = 0
+  var top : Boolean = false
+  var bottom : Boolean = false
+  var left : Boolean = false
+  var right : Boolean = false
 
   object RoadGridSegment {
 
