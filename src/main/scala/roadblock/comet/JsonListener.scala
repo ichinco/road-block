@@ -16,7 +16,7 @@ class JsonListener extends CometActor with CometListener {
   def registerWith = Universe
 
   override def lowPriority = {
-    case Tick => {
+    case _ => {
       sendState()
     }
   }
