@@ -1,7 +1,7 @@
 (function(){
   $(document).ready(function() {
     $(document)
-      .on('new-ng-chat', function(event, data) {
+      .on('new-ng-state', function(event, data) {
         addNGMessages( data )
     })
   });

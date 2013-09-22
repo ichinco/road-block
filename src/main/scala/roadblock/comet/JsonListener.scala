@@ -34,5 +34,5 @@ class JsonListener extends CometActor with CometListener {
 case class NewMessageNg(message: String) extends JsCmd {
   implicit val formats = DefaultFormats.lossless
   val json: JValue = ("message" -> message)
-  override val toJsCmd = JE.JsRaw(""" $(document).trigger('new-ng-chat', %s)""".format( compact( render( json ) ) ) ).toJsCmd
+  override val toJsCmd = JE.JsRaw(""" $(document).trigger('new-ng-state', %s)""".format( compact( render( json ) ) ) ).toJsCmd
 }
