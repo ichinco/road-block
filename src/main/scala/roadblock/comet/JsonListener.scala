@@ -2,10 +2,9 @@ package roadblock.comet
 
 import net.liftweb.http.{CometListener, CometActor}
 import net.liftweb.http.js.{JE, JsCmd}
-import roadblock.comet.Tick
-import roadblock.comet.NewMessageNg
-import net.liftweb.json.{JValue, DefaultFormats}
+import net.liftweb.json._
 import net.liftweb.util.ClearClearable
+import net.liftweb.json.JsonDSL._
 
 /**
  * User: denise
