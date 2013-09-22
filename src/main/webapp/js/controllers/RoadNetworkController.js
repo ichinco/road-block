@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-function RoadNetworkController($scope, $html) {
+function RoadNetworkController($scope) {
     $scope.segments = [
         {type: "straight-segment", x: 0, y: 0, left:false, right: false, top: false, bottom: true},
         {type: "straight-segment", x: 0, y: 1, left:false, right: false, top: true, bottom: true},
