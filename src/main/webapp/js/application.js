@@ -6,7 +6,7 @@
     })
   });
   function getScope() {
-    var e = document.getElementById( 'road' );
+    var e = $('#road');
     return angular.element( e ).scope();
   }
   /*function that add messages to our model*/

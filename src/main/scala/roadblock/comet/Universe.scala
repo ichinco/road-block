@@ -13,7 +13,7 @@ import net.liftweb.json.{DefaultFormats, JValue}
 object Universe extends LiftActor with ListenerManager {
   protected def createUpdate: Any = null
 
-  LAPinger.schedule(this, Tick, 10000L)
+  LAPinger.schedule(this, Tick, 1000L)
 
   override def lowPriority = {
     case Tick => {
