@@ -5,10 +5,11 @@
     <link rel="stylesheet" type="text/css" href="/css/segments.css">
     <script src="/external-js/angular/angular.min.js"></script>
     <script src="/js/controllers/RoadNetworkController.js"></script>
+    <script src="/js/application.js"></script>
   </head>
   <body>
     <div id="main">
-        <div class="road" ng-controller="RoadNetworkController">
+        <div id="road" class="road" ng-controller="RoadNetworkController" data-lift="comet?type=ChatAngularJs">
             <div ng-repeat="segment in segments">
                 <div ng-class="{'border-left':!segment.left, 'border-right': !segment.right, 'border-top':!segment.top, 'border-bottom':!segment.bottom}"
                      style="left:{{segment.x}}*50; top:{{segment.y}}*50; width:50px; height:50px"></div>

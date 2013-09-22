@@ -21,13 +21,13 @@ trait RoadSegment {
 
       def isCollided(): Boolean = state.isOccupied()
 
-      def forwardMotionPermitted(): Boolean = frontNeighbor != null
+      def forwardMotionPermitted(): Boolean = frontNeighbor.segmentType!='no_segment
 
-      def leftwardMotionPermitted(): Boolean = leftSideNeighbor != null
+      def leftwardMotionPermitted(): Boolean = leftSideNeighbor.segmentType!='no_segment
 
-      def backwardMotionPermitted(): Boolean = backNeighbor != null
+      def backwardMotionPermitted(): Boolean = backNeighbor.segmentType!='no_segment
 
-      def rightwardMotionPermitted(): Boolean = rightSideNeighbor != null
+      def rightwardMotionPermitted(): Boolean = rightSideNeighbor.segmentType!='no_segment
     }
   }
   def unacceptCar(car : Car) = {
@@ -36,13 +36,13 @@ trait RoadSegment {
 
       def isCollided(): Boolean = false
 
-      def forwardMotionPermitted(): Boolean = frontNeighbor != null
+      def forwardMotionPermitted(): Boolean = frontNeighbor.segmentType !='no_segment
 
-      def leftwardMotionPermitted(): Boolean = leftSideNeighbor != null
+      def leftwardMotionPermitted(): Boolean = leftSideNeighbor.segmentType !='no_segment
 
-      def backwardMotionPermitted(): Boolean = backNeighbor != null
+      def backwardMotionPermitted(): Boolean = backNeighbor.segmentType !='no_segment
 
-      def rightwardMotionPermitted(): Boolean = rightSideNeighbor != null
+      def rightwardMotionPermitted(): Boolean = rightSideNeighbor.segmentType !='no_segment
     }
   }
   def getState():RoadState = {

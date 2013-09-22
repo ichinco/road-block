@@ -1,7 +1,9 @@
 package roadblock.comet
 
-import net.liftweb.http.ListenerManager
-import net.liftweb.actor.LiftActor
+import net.liftweb.http.{CometActor, ListenerManager}
+import net.liftweb.actor.{LAPinger, LiftActor}
+import net.liftweb.http.js.{JsCmd, JE}
+import net.liftweb.json.{DefaultFormats, JValue}
 
 /**
  * User: denise
@@ -10,4 +12,17 @@ import net.liftweb.actor.LiftActor
  */
 object Universe extends LiftActor with ListenerManager {
   protected def createUpdate: Any = null
+
+  LAPinger.schedule(this, Tick, 10000L)
+
+  override def lowPriority = {
+    case Tick => {
+      updateListeners()
+    }
+  }
+
 }
+
+case class Tick()
+
+
