@@ -9,12 +9,12 @@ import roadblock.lib.interfaces.{RoadState, RoadSegment}
  */
 class NowhereSegment extends RoadSegment {
 
-  def backNeighbor: RoadSegment = null
-  def frontNeighbor:RoadSegment = null
-  def leftSideNeighbor:RoadSegment = null
-  def rightSideNeighbor: RoadSegment = null
-  def segmentType : Symbol = 'no_segment
-  def state: RoadState = new RoadState {
+  var backNeighbor: RoadSegment = null
+  var frontNeighbor:RoadSegment = null
+  var leftSideNeighbor:RoadSegment = null
+  var rightSideNeighbor: RoadSegment = null
+  var segmentType : Symbol = 'no_segment
+  var state: RoadState = new RoadState {
     def isOccupied(): Boolean = false
 
     def forwardMotionPermitted(): Boolean = false

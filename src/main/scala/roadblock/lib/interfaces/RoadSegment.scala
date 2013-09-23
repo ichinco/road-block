@@ -1,17 +1,27 @@
 package roadblock.lib.interfaces
 
+import net.liftweb.json.{Extraction, JValue}
+
+import net.liftweb._
+import util._
+import Helpers._
+import common._
+import json._
+
 /**
  * User: denise
  * Date: 9/18/13
  * Time: 4:32 PM
  */
 trait RoadSegment {
-  def state : RoadState
-  def frontNeighbor : RoadSegment
-  def backNeighbor : RoadSegment
-  def leftSideNeighbor : RoadSegment
-  def rightSideNeighbor : RoadSegment
-  def segmentType : Symbol
+  var state : RoadState
+  var frontNeighbor : RoadSegment
+  var backNeighbor : RoadSegment
+  var leftSideNeighbor : RoadSegment
+  var rightSideNeighbor : RoadSegment
+  var segmentType : Symbol
+  var x : Integer = 0
+  var y : Integer = 0
 
   def tick()
 
@@ -45,19 +55,12 @@ trait RoadSegment {
       def rightwardMotionPermitted(): Boolean = rightSideNeighbor.segmentType !='no_segment
     }
   }
-  def getState():RoadState = {
-    state
-  }
-  def getFrontNeighbor():RoadSegment = {
-    frontNeighbor
-  }
-  def getBackNeighbor():RoadSegment = {
-    backNeighbor
-  }
-  def getLeftSideNeighbor():RoadSegment = {
-    leftSideNeighbor
-  }
-  def getRightSideNeighbor():RoadSegment = {
-    rightSideNeighbor
+
+  object RoadSegment {
+    private implicit val formats = net.liftweb.json.DefaultFormats
+
+    implicit def toJson(item: RoadSegment): JValue = Extraction.decompose(item)
+
+    implicit def toJson(items: Seq[RoadSegment]): JValue = Extraction.decompose(items)
   }
 }
