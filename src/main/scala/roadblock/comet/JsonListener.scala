@@ -30,8 +30,8 @@ class JsonListener extends CometActor with CometListener {
 
           if (i>0){
             val previous = segments(i-1)
-            segment.backNeighbor = previous
-            previous.frontNeighbor = segment
+            previous.backNeighbor = segment
+            segment.frontNeighbor = previous
           }
 
           segments.append(segment)
