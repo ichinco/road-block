@@ -8,6 +8,9 @@ import Helpers._
 import common._
 import json._
 
+import net.liftweb.json.JsonDSL._
+import net.liftweb.json.JsonAST._
+
 /**
  * User: denise
  * Date: 9/24/13
@@ -15,8 +18,8 @@ import json._
  */
 case class SegmentState(segment : RoadSegment) {
   val segmentType = segment.segmentType
-  val x = segment.x
-  val y = segment.y
+  val x :Int = segment.x
+  val y :Int = segment.y
   val left = segment.state.leftwardMotionPermitted()
   val right = segment.state.rightwardMotionPermitted()
   val top = segment.state.forwardMotionPermitted()
@@ -26,7 +29,14 @@ case class SegmentState(segment : RoadSegment) {
 object SegmentState {
   private implicit val formats = net.liftweb.json.DefaultFormats
 
-  implicit def toJson(item: SegmentState): JValue = Extraction.decompose(item)
+  implicit def toJson(item: SegmentState): JValue = {
+    ("type" -> item.segmentType) ~
+    ("x" -> item.x) ~
+    ("y" -> item.y) ~
+    ("left" -> item.left) ~
+    ("right" -> item.right) ~
+    ("top" -> item.top) ~
+    ("bottom" -> item.bottom)
+  }
 
-  implicit def toJson(items: Seq[SegmentState]): JValue = Extraction.decompose(items)
 }

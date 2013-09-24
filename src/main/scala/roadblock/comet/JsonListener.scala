@@ -36,6 +36,7 @@ class JsonListener extends CometActor with CometListener {
 
           segments.append(segment)
       })
+      segments.foreach(f => f.initializeState())
       sendState(segments.toList)
     }
   }

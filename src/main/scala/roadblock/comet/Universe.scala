@@ -14,7 +14,6 @@ object Universe extends LiftActor with ListenerManager {
   protected def createUpdate: Any = null
 
   LAPinger.schedule(this, Tick, 10000L)
-  System.out.println("here")
 
   override def lowPriority = {
     case Tick => {

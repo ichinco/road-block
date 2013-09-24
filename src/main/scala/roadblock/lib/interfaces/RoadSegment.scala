@@ -25,8 +25,26 @@ trait RoadSegment {
 
   def tick()
 
+  def initializeState() = {
+    val initialState = new RoadState {
+      def isOccupied(): Boolean = false
+
+      def forwardMotionPermitted(): Boolean = frontNeighbor.segmentType!='no_segment
+
+      def leftwardMotionPermitted(): Boolean = leftSideNeighbor.segmentType!='no_segment
+
+      def backwardMotionPermitted(): Boolean = backNeighbor.segmentType!='no_segment
+
+      def rightwardMotionPermitted(): Boolean = rightSideNeighbor.segmentType!='no_segment
+
+      def isCollided(): Boolean = false
+    }
+
+    state = initialState
+  }
+
   def acceptCar(car : Car) = {
-    new RoadState {
+    val newState = new RoadState {
       def isOccupied(): Boolean = true
 
       def isCollided(): Boolean = state.isOccupied()
@@ -39,9 +57,11 @@ trait RoadSegment {
 
       def rightwardMotionPermitted(): Boolean = rightSideNeighbor.segmentType!='no_segment
     }
+
+    state = newState
   }
   def unacceptCar(car : Car) = {
-    new RoadState {
+    val newState = new RoadState {
       def isOccupied(): Boolean = false
 
       def isCollided(): Boolean = false
@@ -54,6 +74,8 @@ trait RoadSegment {
 
       def rightwardMotionPermitted(): Boolean = rightSideNeighbor.segmentType !='no_segment
     }
+
+    state = newState
   }
 }
 

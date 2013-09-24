@@ -2,8 +2,7 @@
   $(document).ready(function() {
     $(document)
       .on('new-ng-state', function(event, data) {
-            console.log("got state");
-        addNGMessages( data )
+        addNGMessages( data.segments )
     })
   });
   function getScope() {
