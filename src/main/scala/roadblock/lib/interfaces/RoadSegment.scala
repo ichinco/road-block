@@ -55,12 +55,6 @@ trait RoadSegment {
       def rightwardMotionPermitted(): Boolean = rightSideNeighbor.segmentType !='no_segment
     }
   }
-
-  object RoadSegment {
-    private implicit val formats = net.liftweb.json.DefaultFormats
-
-    implicit def toJson(item: RoadSegment): JValue = Extraction.decompose(item)
-
-    implicit def toJson(items: Seq[RoadSegment]): JValue = Extraction.decompose(items)
-  }
 }
+
+

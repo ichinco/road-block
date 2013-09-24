@@ -5,7 +5,7 @@ import net.liftweb.http.js.{JE, JsCmd}
 import net.liftweb.json._
 import net.liftweb.util.ClearClearable
 import net.liftweb.json.JsonDSL._
-import roadblock.lib.interfaces.{RoadSegment, RoadNetwork}
+import roadblock.lib.interfaces.{SegmentState, RoadSegment, RoadNetwork}
 import roadblock.lib.segments.StraightSegment
 import scala.collection.mutable.ListBuffer
 
@@ -52,6 +52,6 @@ class JsonListener extends CometActor with CometListener {
 
 case class NewMessageNg(network : Seq[RoadSegment]) extends JsCmd {
   implicit val formats = DefaultFormats.lossless
-  val json: JValue = "segments" -> network.toString
+  val json: JValue = "segments" -> network.map(SegmentState(_))
   override val toJsCmd = JE.JsRaw(""" $(document).trigger('new-ng-state', %s)""".format( compact( render( json ) ) ) ).toJsCmd
 }
