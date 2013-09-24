@@ -1,4 +1,4 @@
-package roadblock.lib.interfaces
+package roadblock.lib.segments
 
 import net.liftweb.json._
 
@@ -10,6 +10,7 @@ import json._
 
 import net.liftweb.json.JsonDSL._
 import net.liftweb.json.JsonAST._
+import roadblock.lib.interfaces.RoadSegment
 
 /**
  * User: denise
