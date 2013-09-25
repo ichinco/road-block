@@ -9,7 +9,6 @@ import org.eclipse.jetty.server.Server
 import net.liftweb.http.LiftFilter
 import org.eclipse.jetty.servlet.FilterHolder
 import java.util.EnumSet
-import org.eclipse.jetty.server.DispatcherType
 import org.eclipse.jetty.servlet.DefaultServlet
 
 object RunWebApp {
