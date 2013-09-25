@@ -1,3 +1,4 @@
+import javax.servlet.DispatcherType
 import org.eclipse.jetty.servlet.ServletContextHandler
 import org.eclipse.jetty.servlet.ServletHolder
 import javax.servlet.http.HttpServlet
