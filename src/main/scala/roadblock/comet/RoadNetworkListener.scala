@@ -29,7 +29,7 @@ class RoadNetworkListener extends CometActor with CometListener {
 
         val segment = new StraightSegment()
         segment.x = 0
-        segment.y = i
+        segment.y = 10-i
 
         if (i>0){
           val previous = segments(i-1)

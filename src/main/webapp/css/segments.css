@@ -3,6 +3,10 @@
     margin: 0;
 }
 
+.segment {
+    position: absolute;
+}
+
 .border-left {
     border-left: solid black 1px;
 }

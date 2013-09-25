@@ -8,4 +8,7 @@
 
 function RoadNetworkController($scope) {
     $scope.segments = [];
+    $scope.gridSize = function(dimension) {
+        return dimension * 50 + "px";
+    }
 }
