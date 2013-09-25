@@ -92,7 +92,7 @@
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-webapp</artifactId>
             <version>8.1.10.v20130312</version>
-            <scope>test</scope>
+            <scope>compile</scope>
         </dependency>
         <!-- for LiftConsole -->
         <dependency>
