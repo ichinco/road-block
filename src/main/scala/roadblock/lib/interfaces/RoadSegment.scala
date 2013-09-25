@@ -44,10 +44,11 @@ trait RoadSegment {
   }
 
   def acceptCar(car : Car) = {
+    val occupied = this.state.isOccupied()
     val newState = new RoadState {
       def isOccupied(): Boolean = true
 
-      def isCollided(): Boolean = state.isOccupied()
+      def isCollided(): Boolean = occupied
 
       def forwardMotionPermitted(): Boolean = frontNeighbor.segmentType!='no_segment
 
