@@ -15,7 +15,9 @@ class BasicRoadNetwork extends RoadNetwork {
     var localSegment : RoadSegment = segment
     (0 until i).foreach(
       (i : Int) => {
-        localSegment = localSegment.frontNeighbor
+        if (localSegment != null) {
+          localSegment = localSegment.frontNeighbor
+        }
       }
     )
 
@@ -25,7 +27,9 @@ class BasicRoadNetwork extends RoadNetwork {
     var localSegment : RoadSegment = segment
     (0 until i).foreach(
       (i : Int) => {
-        localSegment = localSegment.backNeighbor
+        if (localSegment != null) {
+          localSegment = localSegment.backNeighbor
+        }
       }
     )
 
@@ -35,7 +39,9 @@ class BasicRoadNetwork extends RoadNetwork {
     var localSegment : RoadSegment = segment
     (0 until i).foreach(
       (i : Int) => {
-        localSegment = localSegment.leftSideNeighbor
+        if (localSegment != null) {
+          localSegment = localSegment.leftSideNeighbor
+        }
       }
     )
 
@@ -45,7 +51,9 @@ class BasicRoadNetwork extends RoadNetwork {
     var localSegment : RoadSegment = segment
     (0 until i).foreach(
       (i : Int) => {
-        localSegment = localSegment.rightSideNeighbor
+        if (localSegment != null) {
+          localSegment = localSegment.rightSideNeighbor
+        }
       }
     )
 

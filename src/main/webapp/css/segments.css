@@ -18,4 +18,11 @@
 .border-bottom {
     border-bottom: solid black 1px;
 }
- 
+
+.occupied {
+    background-color: #000000;
+}
+
+.collided {
+    background-color: darkred;
+}

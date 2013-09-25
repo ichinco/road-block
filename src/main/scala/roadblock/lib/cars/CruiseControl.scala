@@ -9,15 +9,13 @@ import roadblock.lib.segments.NowhereSegment
  * Time: 4:37 PM
  */
 class CruiseControl(desiredSpeed : Integer) extends Car { //speed will be in seconds per segment
-  var currentSegment : RoadSegment = new NowhereSegment()
+
   var ticksInCurrentSegment : Integer = 0
 
   def tick(network: RoadNetwork) = {
     if (ticksInCurrentSegment > desiredSpeed) {
-      this.currentSegment.unacceptCar(this)
       val newSegment = network.getForwardSegment(this.currentSegment, 1)
-      currentSegment = newSegment
-      this.currentSegment.acceptCar(this)
+      this.changeToSegment(newSegment)
       ticksInCurrentSegment = 0
     } else {
       ticksInCurrentSegment.+=(1)

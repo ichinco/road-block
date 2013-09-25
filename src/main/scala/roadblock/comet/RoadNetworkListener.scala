@@ -5,10 +5,11 @@ import net.liftweb.http.js.{JE, JsCmd}
 import net.liftweb.json._
 import net.liftweb.util.ClearClearable
 import net.liftweb.json.JsonDSL._
-import roadblock.lib.interfaces.{RoadSegment, RoadNetwork}
+import roadblock.lib.interfaces.{Car, RoadSegment, RoadNetwork}
 import roadblock.lib.segments.{SegmentState, StraightSegment}
 import scala.collection.mutable.ListBuffer
 import roadblock.lib.networks.{NetworkState, BasicRoadNetwork}
+import roadblock.lib.cars.CruiseControl
 
 /**
  * User: denise
@@ -18,6 +19,8 @@ import roadblock.lib.networks.{NetworkState, BasicRoadNetwork}
 class RoadNetworkListener extends CometActor with CometListener {
 
   def registerWith = Universe
+
+  val car : Car = new CruiseControl(2)
 
   val network : RoadNetwork = {
     val segments : ListBuffer[RoadSegment] = ListBuffer()
@@ -30,8 +33,8 @@ class RoadNetworkListener extends CometActor with CometListener {
 
         if (i>0){
           val previous = segments(i-1)
-          previous.backNeighbor = segment
-          segment.frontNeighbor = previous
+          segment.backNeighbor = previous
+          previous.frontNeighbor = segment
         }
 
         segments.append(segment)
@@ -39,11 +42,14 @@ class RoadNetworkListener extends CometActor with CometListener {
     segments.foreach(f => f.initializeState())
     val n : RoadNetwork = new BasicRoadNetwork()
     n.segments = segments.toList
+
+    car.changeToSegment(segments(0))
     n
   }
 
   override def lowPriority = {
     case _ => {
+      car.tick(network)
       sendState()
     }
   }
