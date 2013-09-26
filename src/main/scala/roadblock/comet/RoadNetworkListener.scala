@@ -45,8 +45,8 @@ class RoadNetworkListener extends CometActor with CometListener {
     val sink : RoadSegment = new CarSink()
     sink.x=0
     sink.y=0
-    sink.frontNeighbor = segments(10)
-    segments(10).backNeighbor=sink
+    sink.backNeighbor = segments(10)
+    segments(10).frontNeighbor=sink
     segments.append(source)
     segments.append(sink)
     segments.foreach(f => f.initializeState())
