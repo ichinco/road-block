@@ -1,6 +1,13 @@
 .straight_segment {
-    border : solid black 1px;
-    margin: 0;
+    border-style : solid;
+}
+
+.source {
+    border-style : dashed;
+}
+
+.sink {
+    border-style: dotted;
 }
 
 .segment {

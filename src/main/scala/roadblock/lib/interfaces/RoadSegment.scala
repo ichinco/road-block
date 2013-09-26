@@ -7,6 +7,7 @@ import util._
 import Helpers._
 import common._
 import json._
+import roadblock.lib.segments.NowhereSegment
 
 /**
  * User: denise
@@ -15,19 +16,22 @@ import json._
  */
 trait RoadSegment {
   var state : RoadState
-  var frontNeighbor : RoadSegment
-  var backNeighbor : RoadSegment
-  var leftSideNeighbor : RoadSegment
-  var rightSideNeighbor : RoadSegment
+  var frontNeighbor : RoadSegment = null
+  var backNeighbor : RoadSegment = null
+  var leftSideNeighbor : RoadSegment = null
+  var rightSideNeighbor : RoadSegment = null
   var segmentType : Symbol
   var x : Integer = 0
   var y : Integer = 0
+  var car : Car = Car.empty()
 
-  def tick()
+  def tick(network:RoadNetwork) = {
+    this.car.tick(network)
+  }
 
   def initializeState() = {
     val initialState = new RoadState {
-      def isOccupied(): Boolean = false
+      def occupied: Boolean = false
 
       def forwardMotionPermitted(): Boolean = frontNeighbor.segmentType!='no_segment
 
@@ -37,18 +41,18 @@ trait RoadSegment {
 
       def rightwardMotionPermitted(): Boolean = rightSideNeighbor.segmentType!='no_segment
 
-      def isCollided(): Boolean = false
+      def collided: Boolean = false
     }
 
     state = initialState
   }
 
   def acceptCar(car : Car) = {
-    val occupied = this.state.isOccupied()
+    val alreadyOccupied = this.state.occupied
     val newState = new RoadState {
-      def isOccupied(): Boolean = true
+      def occupied: Boolean = true
 
-      def isCollided(): Boolean = occupied
+      def collided: Boolean = alreadyOccupied
 
       def forwardMotionPermitted(): Boolean = frontNeighbor.segmentType!='no_segment
 
@@ -58,14 +62,14 @@ trait RoadSegment {
 
       def rightwardMotionPermitted(): Boolean = rightSideNeighbor.segmentType!='no_segment
     }
-
+    this.car = car
     state = newState
   }
   def unacceptCar(car : Car) = {
     val newState = new RoadState {
-      def isOccupied(): Boolean = false
+      def occupied: Boolean = false
 
-      def isCollided(): Boolean = false
+      def collided: Boolean = false
 
       def forwardMotionPermitted(): Boolean = frontNeighbor.segmentType !='no_segment
 
@@ -76,6 +80,7 @@ trait RoadSegment {
       def rightwardMotionPermitted(): Boolean = rightSideNeighbor.segmentType !='no_segment
     }
 
+    this.car = Car.empty()
     state = newState
   }
 }

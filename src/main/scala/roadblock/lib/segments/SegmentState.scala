@@ -25,8 +25,8 @@ case class SegmentState(segment : RoadSegment) {
   val right = segment.state.rightwardMotionPermitted()
   val top = segment.state.forwardMotionPermitted()
   val bottom = segment.state.backwardMotionPermitted()
-  val collided = segment.state.isCollided()
-  val occupied = segment.state.isOccupied()
+  val collided = segment.state.collided
+  val occupied = segment.state.occupied
 }
 
 object SegmentState {

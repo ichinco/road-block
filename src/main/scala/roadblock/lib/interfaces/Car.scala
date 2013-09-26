@@ -1,6 +1,7 @@
 package roadblock.lib.interfaces
 
 import roadblock.lib.segments.NowhereSegment
+import roadblock.lib.cars.NoCar
 
 /**
  * User: denise
@@ -8,7 +9,7 @@ import roadblock.lib.segments.NowhereSegment
  * Time: 4:32 PM
  */
 trait Car {
-  var currentSegment : RoadSegment = new NowhereSegment()
+  var currentSegment : RoadSegment = null
 
   def tick(segments: RoadNetwork)
 
@@ -16,5 +17,11 @@ trait Car {
     this.currentSegment.unacceptCar(this)
     currentSegment = newSegment
     this.currentSegment.acceptCar(this)
+  }
+}
+
+object Car {
+  def empty() : Car = {
+    return new NoCar();
   }
 }

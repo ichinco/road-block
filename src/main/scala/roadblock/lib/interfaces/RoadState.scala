@@ -6,8 +6,8 @@ package roadblock.lib.interfaces
  * Time: 4:30 PM
  */
 trait RoadState {
-  def isOccupied():Boolean
-  def isCollided():Boolean
+  def occupied:Boolean
+  def collided:Boolean
   def forwardMotionPermitted():Boolean
   def leftwardMotionPermitted():Boolean
   def rightwardMotionPermitted():Boolean

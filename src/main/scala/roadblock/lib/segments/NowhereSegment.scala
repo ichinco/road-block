@@ -1,6 +1,6 @@
 package roadblock.lib.segments
 
-import roadblock.lib.interfaces.{RoadState, RoadSegment}
+import roadblock.lib.interfaces.{RoadNetwork, RoadState, RoadSegment}
 
 /**
  * User: denise
@@ -8,14 +8,9 @@ import roadblock.lib.interfaces.{RoadState, RoadSegment}
  * Time: 1:55 PM
  */
 class NowhereSegment extends RoadSegment {
-
-  var backNeighbor: RoadSegment = null
-  var frontNeighbor:RoadSegment = null
-  var leftSideNeighbor:RoadSegment = null
-  var rightSideNeighbor: RoadSegment = null
   var segmentType : Symbol = 'no_segment
   var state: RoadState = new RoadState {
-    def isOccupied(): Boolean = false
+    def occupied: Boolean = false
 
     def forwardMotionPermitted(): Boolean = false
 
@@ -25,10 +20,6 @@ class NowhereSegment extends RoadSegment {
 
     def rightwardMotionPermitted(): Boolean = false
 
-    def isCollided(): Boolean = false
+    def collided: Boolean = false
   }
-  def tick(): Unit = {
-
-  }
-
 }
