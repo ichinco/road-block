@@ -29,7 +29,7 @@ object RunWebApp {
     val context = new ServletContextHandler(server, "/", ServletContextHandler.SESSIONS)
     context.setSessionHandler(sessionHandler)
     context.addServlet(classOf[DefaultServlet], "/")
-    context.addFilter(classOf[LiftFilter], "/*", 0)
+//    context.addFilter(classOf[LiftFilter], "/*", 0)
     context.setResourceBase("src/main/webapp")
 
     server.start
