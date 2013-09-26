@@ -1,31 +1,38 @@
-import javax.servlet.DispatcherType
-import org.eclipse.jetty.servlet.ServletContextHandler
-import org.eclipse.jetty.servlet.ServletHolder
-import javax.servlet.http.HttpServlet
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
-import java.io.File
 import org.eclipse.jetty.server.Server
+import org.eclipse.jetty.server.session.{SessionHandler, HashSessionManager}
+import org.eclipse.jetty.servlet.{DefaultServlet, ServletContextHandler}
+import org.eclipse.jetty.server.nio.SelectChannelConnector
 import net.liftweb.http.LiftFilter
-import org.eclipse.jetty.servlet.FilterHolder
-import java.util.EnumSet
-import org.eclipse.jetty.servlet.DefaultServlet
 
 object RunWebApp {
 
   def main(args: Array[String]): Unit = {
-    val server = new Server(Integer.valueOf(System.getenv("PORT")));
-    val context = new ServletContextHandler(ServletContextHandler.SESSIONS);
+    //Transfer the run.mode from system environment to system properties. Otherwise Lift's calculation of
+    //mode will not work
+    if (System.getProperty("run.mode") == null){
+      System.setProperty("run.mode", System.getenv("run.mode"))
+    }
 
-    context.setContextPath("/")
-    server.setHandler(context)
+    //Create the server and set the port to listen to
+    val port = if (System.getenv("PORT") != null) System.getenv("PORT").toInt else 8080
+    val server = new Server
+    val scc = new SelectChannelConnector
+    scc.setPort(port)
+    server.setConnectors(Array(scc))
 
-    context.addServlet(new ServletHolder(new DefaultServlet), "/*");
+    //Initialize the session handler
+    val sessionHandler = new SessionHandler()
+    val sessionManager = new HashSessionManager()
+    sessionHandler.setSessionManager(sessionManager)
+    sessionManager.setMaxInactiveInterval(600)
 
-    val tFilter = new LiftFilter()
-    context.addFilter(new FilterHolder(new LiftFilter()), "/*", EnumSet.of(DispatcherType.REQUEST))
+    val context = new ServletContextHandler(server, "/", ServletContextHandler.SESSIONS)
+    context.setSessionHandler(sessionHandler)
+    context.addServlet(classOf[DefaultServlet], "/")
+    context.addFilter(classOf[LiftFilter], "/*", 0)
+    context.setResourceBase("src/main/webapp")
 
-    server.start()
-    server.join()
+    server.start
+    server.join
   }
 }
