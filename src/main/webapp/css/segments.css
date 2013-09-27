@@ -7,7 +7,12 @@
 }
 
 .sink {
-    border: dotted black 1px;
+    background-color: gray;
+    border: solid black 1px;
+}
+
+.empty_segment {
+    border : dotted black 1px;
 }
 
 .segment {

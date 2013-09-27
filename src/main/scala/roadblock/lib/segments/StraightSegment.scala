@@ -7,11 +7,7 @@ import roadblock.lib.interfaces.{RoadNetwork, RoadState, Car, RoadSegment}
  * Date: 9/18/13
  * Time: 4:51 PM
  */
-class StraightSegment extends RoadSegment {
-  frontNeighbor = new NowhereSegment()
-  backNeighbor = new NowhereSegment()
-  leftSideNeighbor = new NowhereSegment()
-  rightSideNeighbor = new NowhereSegment()
+class StraightSegment extends NotNullSegment {
   var state: roadblock.lib.interfaces.RoadState = null
   var segmentType : Symbol = 'straight_segment
 }

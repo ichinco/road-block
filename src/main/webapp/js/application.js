@@ -2,7 +2,6 @@
   $(document).ready(function() {
     $(document)
       .on('new-ng-state', function(event, data) {
-            console.log(data);
             addNGMessages( data.segments )
     })
   });

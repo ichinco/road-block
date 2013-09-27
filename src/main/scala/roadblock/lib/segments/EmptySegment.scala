@@ -7,8 +7,8 @@ import roadblock.lib.interfaces.{RoadNetwork, RoadState, RoadSegment}
  * Date: 9/19/13
  * Time: 1:55 PM
  */
-class NowhereSegment extends RoadSegment {
-  var segmentType : Symbol = 'no_segment
+class EmptySegment extends NotNullSegment {
+  var segmentType : Symbol = 'empty_segment
   var state: RoadState = new RoadState {
     def occupied: Boolean = false
 

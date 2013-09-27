@@ -8,11 +8,7 @@ import roadblock.lib.cars.CruiseControl
  * Date: 9/26/13
  * Time: 11:55 AM
  */
-class CarSource(ticksToNewCar : Int) extends RoadSegment {
-  frontNeighbor = new NowhereSegment()
-  backNeighbor = new NowhereSegment()
-  leftSideNeighbor = new NowhereSegment()
-  rightSideNeighbor = new NowhereSegment()
+class CarSource(ticksToNewCar : Int) extends NotNullSegment {
   var state: roadblock.lib.interfaces.RoadState = null
   var segmentType : Symbol = 'source
 

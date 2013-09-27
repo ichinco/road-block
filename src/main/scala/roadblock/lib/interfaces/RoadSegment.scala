@@ -7,7 +7,7 @@ import util._
 import Helpers._
 import common._
 import json._
-import roadblock.lib.segments.NowhereSegment
+import roadblock.lib.segments.{NullSegment, EmptySegment}
 
 /**
  * User: denise
@@ -16,14 +16,14 @@ import roadblock.lib.segments.NowhereSegment
  */
 trait RoadSegment {
   var state : RoadState
-  var frontNeighbor : RoadSegment = null
-  var backNeighbor : RoadSegment = null
-  var leftSideNeighbor : RoadSegment = null
-  var rightSideNeighbor : RoadSegment = null
+  var frontNeighbor : RoadSegment
+  var backNeighbor : RoadSegment
+  var leftSideNeighbor : RoadSegment
+  var rightSideNeighbor : RoadSegment
   var segmentType : Symbol
   var x : Integer = 0
   var y : Integer = 0
-  var car : Car = Car.empty()
+  var car : Car
 
   def tick(network:RoadNetwork) = {
     this.car.tick(network)
@@ -82,6 +82,12 @@ trait RoadSegment {
 
     this.car = Car.empty()
     state = newState
+  }
+}
+
+object RoadSegment {
+  def empty() : RoadSegment = {
+    new NullSegment()
   }
 }
 

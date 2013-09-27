@@ -1,6 +1,6 @@
 package roadblock.lib.interfaces
 
-import roadblock.lib.segments.NowhereSegment
+import roadblock.lib.segments.EmptySegment
 import roadblock.lib.cars.NoCar
 
 /**
@@ -22,6 +22,6 @@ trait Car {
 
 object Car {
   def empty() : Car = {
-    return new NoCar();
+    new NoCar()
   }
 }

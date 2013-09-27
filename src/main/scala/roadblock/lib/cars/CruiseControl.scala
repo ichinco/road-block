@@ -1,7 +1,7 @@
 package roadblock.lib.cars
 
 import roadblock.lib.interfaces.{RoadNetwork, RoadSegment, Car}
-import roadblock.lib.segments.NowhereSegment
+import roadblock.lib.segments.EmptySegment
 
 /**
  * User: denise
@@ -9,7 +9,7 @@ import roadblock.lib.segments.NowhereSegment
  * Time: 4:37 PM
  */
 class CruiseControl(desiredSpeed : Integer) extends Car { //speed will be in seconds per segment
-  currentSegment= new NowhereSegment()
+  currentSegment= new EmptySegment()
   var ticksInCurrentSegment : Integer = 0
   var ticking : Boolean = false
 
