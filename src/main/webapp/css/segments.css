@@ -1,33 +1,33 @@
 .straight_segment {
-    border-style : solid;
+    border : solid black 1px;
 }
 
 .source {
-    border-style : dashed;
+    border : dashed black 1px;
 }
 
 .sink {
-    border-style: dotted;
+    border: dotted black 1px;
 }
 
 .segment {
     position: absolute;
 }
 
-.border-left {
-    border-left: solid black 1px;
+.no-border-left {
+    border-left: none;
 }
 
-.border-right {
-    border-right: solid black 1px;
+.no-border-right {
+    border-right: none;
 }
 
-.border-top {
-    border-top: solid black 1px;
+.no-border-top {
+    border-top: none;
 }
 
-.border-bottom {
-    border-bottom: solid black 1px;
+.no-border-bottom {
+    border-bottom: none;
 }
 
 .occupied {

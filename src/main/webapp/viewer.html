@@ -12,13 +12,14 @@
     <div id="main">
         <div id="road" class="road" ng-controller="RoadNetworkController" data-lift="comet?type=RoadNetworkListener">
             <div ng-repeat="segment in segments">
-                <div ng-class="{'border-left':!segment.left,
-                                'border-right': !segment.right,
-                                'border-top':!segment.top,
-                                'border-bottom':!segment.bottom,
+                <div ng-class="{'no-border-left':segment.left,
+                                'no-border-right': segment.right,
+                                'no-border-top':segment.top,
+                                'no-border-bottom':segment.bottom,
                                 'occupied':segment.occupied,
                                 'collided':segment.collided,
-                                'segment':true}"
+                                'segment':true,
+                                {{segment.type}}:true}"
                      style="left:{{gridSize(segment.x)}};
                             top:{{gridSize(segment.y)}};
                             width:50px;
