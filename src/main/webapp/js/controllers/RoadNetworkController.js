@@ -4,7 +4,7 @@ function RoadNetworkController($scope, editorService) {
         return dimension * 25 + "px";
     };
     $scope.editSegment = function(segment) {
-        console.log(segment);
-        editor.editingSegment = segment;
+        editorService.set(segment);
+        console.log(editorService.list());
     };
 }

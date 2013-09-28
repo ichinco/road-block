@@ -1,3 +1,3 @@
 function EditorController($scope, editorService) {
-    $scope.segment = editorService.editingSegment;
+    $scope.segment = editorService.list;
 }
