@@ -27,6 +27,19 @@ case class SegmentState(segment : RoadSegment) {
   val bottom = segment.state.backwardMotionPermitted()
   val collided = segment.state.collided
   val occupied = segment.state.occupied
+  val direction : Symbol = {
+    if (segment.frontNeighbor.x < segment.x) {
+      'left
+    } else if (segment.frontNeighbor.x > segment.x) {
+      'right
+    } else if (segment.frontNeighbor.y < segment.y) {
+      'up
+    } else if (segment.frontNeighbor.y > segment.y) {
+      'down
+    } else {
+      'none
+    }
+  }
 }
 
 object SegmentState {
@@ -41,7 +54,8 @@ object SegmentState {
     ("top" -> item.top) ~
     ("bottom" -> item.bottom) ~
     ("collided" -> item.collided) ~
-    ("occupied" -> item.occupied)
+    ("occupied" -> item.occupied) ~
+    ("direction" -> item.direction)
   }
 
 }

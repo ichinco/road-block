@@ -1,17 +1,10 @@
-/**
- * Created with IntelliJ IDEA.
- * User: denise
- * Date: 9/19/13
- * Time: 2:55 PM
- * To change this template use File | Settings | File Templates.
- */
-
-function RoadNetworkController($scope) {
+function RoadNetworkController($scope, editorService) {
     $scope.segments = [];
     $scope.gridSize = function(dimension) {
         return dimension * 25 + "px";
     };
-    $scope.editSegment = function(x,y) {
-        console.log(x + "," + y);
+    $scope.editSegment = function(segment) {
+        console.log(segment);
+        editor.editingSegment = segment;
     };
 }

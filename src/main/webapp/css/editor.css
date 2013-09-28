@@ -1,0 +1,16 @@
+.editor {
+    position: absolute;
+    height: 100%;
+    width: 25%;
+    right:0;
+    top: 0;
+    border: 1px solid black;
+}
+
+.editor .select {
+    display: block;
+}
+
+.editor .button {
+    display: block;
+}
