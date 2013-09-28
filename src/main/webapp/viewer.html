@@ -29,14 +29,13 @@
             </div>
         </div>
         <div id="editor" class="editor" ng-controller="EditorController">
-            <div>{{segment().x}}</div>
-            <select selected="{{segment().type}}">
+            <select ng-model="segment().type">
                 <option value="straight_segment">straight road</option>
                 <option value="empty_segment">none</option>
                 <option value="source">car source</option>
                 <option value="sink">car sink</option>
             </select>
-            <select selected="{{segment().direction}}">
+            <select ng-model="segment().direction">
                 <option value="up">up</option>
                 <option value="down">down</option>
                 <option value="left">left</option>
