@@ -5,6 +5,5 @@ function RoadNetworkController($scope, editorService) {
     };
     $scope.editSegment = function(segment) {
         editorService.set(segment);
-        console.log(editorService.list());
     };
 }
