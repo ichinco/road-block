@@ -22,19 +22,27 @@
                                 {{segment.type}}:true}"
                      style="left:{{gridSize(segment.x)}};
                             top:{{gridSize(segment.y)}};
-                            width:50px;
-                            height:50px"
+                            width:{{gridSize(1)}};
+                            height:{{gridSize(1)}}"
                      ng-click="editSegment(segment)">
                 </div>
             </div>
         </div>
         <div id="editor" class="editor" ng-controller="EditorController">
-            What type of road do you want at {{segment().x}},{{segment().y}}?
-            <select ng-model="segment().type" ng-options="s.value as s.name for s in segmentTypes">
-            </select>
-            <select ng-model="segment().direction" ng-options="d.value as d.name for d in directions">
-            </select>
-            <button ng-click="updateSegment()">submit</button>
+            <h1>What type of road do you want at {{segment().x}},{{segment().y}}?</h1>
+            <div class="lift:RoadNetworkSnippet.change">
+                <e:x>{{segment().x}}</e:x>
+                <e:y>{{segment().y}}</e:y>
+                <!--<e:segmentType>-->
+                <!--<select ng-model="segment().type" ng-options="s.value as s.name for s in segmentTypes">-->
+                <!--</select>-->
+                <!--</e:segmentType>-->
+                <!--<e:direction>-->
+                <!--<select ng-model="segment().direction" ng-options="d.value as d.name for d in directions">-->
+                <!--</select>-->
+                <!--</e:direction>-->
+                <button ng-click="updateSegment()">submit</button>
+            </div>
         </div>
     </div>
     <script src="/js/services/EditorService.js"></script>

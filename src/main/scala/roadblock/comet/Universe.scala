@@ -16,9 +16,12 @@ object Universe extends LiftActor with ListenerManager {
   LAPinger.schedule(this, Tick, 1000L)
 
   override def lowPriority = {
-    case Tick => {
-      updateListeners()
+    case t:Tick => {
+      updateListeners(t)
       LAPinger.schedule(this, Tick, 1000L)
+    }
+    case s:String => {
+      updateListeners(s)
     }
   }
 

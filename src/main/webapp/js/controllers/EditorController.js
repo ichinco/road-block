@@ -12,6 +12,6 @@ function EditorController($scope, editorService) {
     ];
     $scope.segment = editorService.list;
     $scope.updateSegment = function() {
-        console.log("submitting");
+        console.log($scope.segment());
     }
 }

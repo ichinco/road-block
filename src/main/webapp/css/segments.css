@@ -12,7 +12,7 @@
 }
 
 .empty_segment {
-    border : dotted black 1px;
+    border : solid grey 1px;
 }
 
 .segment {
