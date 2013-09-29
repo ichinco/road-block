@@ -1,4 +1,5 @@
-package roadblock.snippet
+package roadblock
+package snippet
 
 import net.liftweb._
 import http._
@@ -15,7 +16,7 @@ import scala.xml.{Text, NodeSeq}
  */
 class RoadNetworkSnippet extends StatefulSnippet {
   def dispatch = {
-    case "change" => change _
+    case "change" => change
   }
 
   var x : Int = 0

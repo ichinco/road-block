@@ -31,16 +31,12 @@
         <div id="editor" class="editor" ng-controller="EditorController">
             <h1>What type of road do you want at {{segment().x}},{{segment().y}}?</h1>
             <div class="lift:RoadNetworkSnippet.change">
-                <e:x>{{segment().x}}</e:x>
-                <e:y>{{segment().y}}</e:y>
-                <!--<e:segmentType>-->
-                <!--<select ng-model="segment().type" ng-options="s.value as s.name for s in segmentTypes">-->
+                <!--<div class="x">{{segment().x}}</div>-->
+                <!--<div class="y">{{segment().y}}</div>-->
+                <!--<select class="segmentType" ng-model="segment().type" ng-options="s.value as s.name for s in segmentTypes">-->
                 <!--</select>-->
-                <!--</e:segmentType>-->
-                <!--<e:direction>-->
-                <!--<select ng-model="segment().direction" ng-options="d.value as d.name for d in directions">-->
+                <!--<select class="direction" ng-model="segment().direction" ng-options="d.value as d.name for d in directions">-->
                 <!--</select>-->
-                <!--</e:direction>-->
                 <button ng-click="updateSegment()">submit</button>
             </div>
         </div>
