@@ -30,15 +30,13 @@
         </div>
         <div id="editor" class="editor" ng-controller="EditorController">
             <h1>What type of road do you want at {{segment().x}},{{segment().y}}?</h1>
-            <div class="lift:RoadNetworkSnippet.change">
-                <!--<div class="x">{{segment().x}}</div>-->
-                <!--<div class="y">{{segment().y}}</div>-->
-                <!--<select class="segmentType" ng-model="segment().type" ng-options="s.value as s.name for s in segmentTypes">-->
-                <!--</select>-->
-                <!--<select class="direction" ng-model="segment().direction" ng-options="d.value as d.name for d in directions">-->
-                <!--</select>-->
-                <button ng-click="updateSegment()">submit</button>
-            </div>
+            <input type="hidden" class="x" value="{{segment().x}}"/>
+            <input type="hidden" class="y" value="{{segment().y}}"/>
+            <select class="segmentType" ng-model="segment().type" ng-options="s.value as s.name for s in segmentTypes">
+            </select>
+            <select class="direction" ng-model="segment().direction" ng-options="d.value as d.name for d in directions">
+            </select>
+            <input type="submit" value="submit" />
         </div>
     </div>
     <script src="/js/services/EditorService.js"></script>
