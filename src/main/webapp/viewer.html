@@ -36,7 +36,7 @@
             </select>
             <select class="direction" ng-model="segment().direction" ng-options="d.value as d.name for d in directions">
             </select>
-            <input type="submit" value="submit" />
+            <input ng-click="updateSegment()" type="submit" value="submit" />
         </div>
     </div>
     <script src="/js/services/EditorService.js"></script>

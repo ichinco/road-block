@@ -45,6 +45,10 @@ case class SegmentState(segment : RoadSegment) {
 object SegmentState {
   private implicit val formats = net.liftweb.json.DefaultFormats
 
+  def apply(in: JValue): Box[SegmentState] = Helpers.tryo{in.extract[SegmentState]}
+
+  def unapply(in: JValue): Option[SegmentState] = apply(in)
+
   implicit def toJson(item: SegmentState): JValue = {
     ("type" -> item.segmentType) ~
     ("x" -> item.x) ~

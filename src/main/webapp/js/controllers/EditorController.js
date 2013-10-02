@@ -12,6 +12,10 @@ function EditorController($scope, editorService) {
     ];
     $scope.segment = editorService.list;
     $scope.updateSegment = function() {
-        console.log($scope.segment());
+        $.ajax({
+            type:"POST",
+            url:"/rest/network",
+            data: $scope.segment()
+        });
     }
 }
