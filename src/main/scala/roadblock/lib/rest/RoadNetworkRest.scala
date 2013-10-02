@@ -7,6 +7,7 @@ import rest._
 import util._
 import Helpers._
 import json._
+import net.liftweb.json.JsonDSL._
 import scala.xml._
 import roadblock.lib.segments.SegmentState
 import roadblock.comet.Universe
@@ -22,8 +23,8 @@ object RoadNetworkRest extends RestHelper {
     // POST if we find the item, merge the fields from the
     // the POST body and update the item
     case Nil JsonPost json -> _ =>
-      Universe ! "hello"
-
+      Universe ! json
+      ("success" -> true) : JValue
 
   })
 }
