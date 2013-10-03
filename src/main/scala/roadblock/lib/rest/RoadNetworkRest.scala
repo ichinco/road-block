@@ -18,14 +18,27 @@ import roadblock.comet.Universe
  */
 object RoadNetworkRest extends RestHelper {
 
+  def addToUniverse(json : JValue) : JValue = {
+    Universe ! json.extract[SegmentState]
+    ("success" -> true) : JValue
+  }
+
+  serve {
+    case "rest" :: "network" :: "update" :: Nil JsonPost json->request =>
+      for {
+        b <- json
+      }
+      yield addToUniverse(b)
+  }
+
   // Serve /api/item and friends
-  serve( "rest" / "network" prefix {
-
-    // POST if we find the item, merge the fields from the
-    // the POST body and update the item
-    case "update" :: Nil JsonPost json -> _ =>
-      Universe ! json.extract[SegmentState]
-      ("success" -> true) : JValue
-
-  })
+//  serve( "rest" / "network" prefix {
+//
+//    POST if we find the item, merge the fields from the
+//    the POST body and update the item
+//    case "update" :: Nil JsonPost json -> _ =>
+//      Universe ! json.extract[SegmentState]
+//      ("success" -> true) : JValue
+//
+//  })
 }
