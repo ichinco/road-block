@@ -23,7 +23,7 @@ object RoadNetworkRest extends RestHelper {
 
     // POST if we find the item, merge the fields from the
     // the POST body and update the item
-    case Nil JsonPost json -> _ =>
+    case "update" :: Nil JsonPost json -> _ =>
       Universe ! json.extract[SegmentState]
       ("success" -> true) : JValue
 

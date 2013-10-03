@@ -13,8 +13,12 @@ function EditorController($scope, editorService) {
     $scope.segment = editorService.list;
     $scope.updateSegment = function() {
         $.ajax({
+            headers: {
+                Accept : "application/json; charset=utf-8",
+                "Content-Type": "application/json; charset=utf-8"
+            },
             type:"POST",
-            url:"/rest/network",
+            url:"/rest/network/update",
             data: $scope.segment()
         });
     }

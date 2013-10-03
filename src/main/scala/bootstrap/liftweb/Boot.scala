@@ -41,7 +41,7 @@ class Boot {
     // where to search snippet
     LiftRules.addToPackages("roadblock")
 
-    LiftRules.dispatch.append(RoadNetworkRest)
+    LiftRules.statelessDispatch.append(RoadNetworkRest)
 
     // Build SiteMap
     def sitemap = SiteMap(
