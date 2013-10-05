@@ -19,7 +19,7 @@ function EditorController($scope, editorService) {
             },
             type:"POST",
             url:"/rest/network/update",
-            data: $scope.segment()
+            data: JSON.stringify( $scope.segment() )
         });
     }
 }
