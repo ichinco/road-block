@@ -18,6 +18,7 @@ import roadblock.lib.interfaces.RoadSegment
  * Time: 12:07 PM
  */
 case class SegmentState(segment : RoadSegment) {
+  def this() = this(new NullSegment());
   val segmentType = segment.segmentType
   val x :Int = segment.x
   val y :Int = segment.y
@@ -28,13 +29,13 @@ case class SegmentState(segment : RoadSegment) {
   val collided = segment.state.collided
   val occupied = segment.state.occupied
   val direction : Symbol = {
-    if (segment.frontNeighbor.x < segment.x) {
+    if (segment.frontNeighbor != null && segment.frontNeighbor.x < segment.x) {
       'left
-    } else if (segment.frontNeighbor.x > segment.x) {
+    } else if (segment.frontNeighbor != null && segment.frontNeighbor.x > segment.x) {
       'right
-    } else if (segment.frontNeighbor.y < segment.y) {
+    } else if (segment.frontNeighbor != null && segment.frontNeighbor.y < segment.y) {
       'up
-    } else if (segment.frontNeighbor.y > segment.y) {
+    } else if (segment.frontNeighbor != null && segment.frontNeighbor.y > segment.y) {
       'down
     } else {
       'none
@@ -50,7 +51,7 @@ object SegmentState {
   def unapply(in: JValue): Option[SegmentState] = apply(in)
 
   implicit def toJson(item: SegmentState): JValue = {
-    ("type" -> item.segmentType) ~
+    ("segmentType" -> item.segmentType) ~
     ("x" -> item.x) ~
     ("y" -> item.y) ~
     ("left" -> item.left) ~

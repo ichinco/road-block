@@ -19,7 +19,7 @@
                                 'occupied':segment.occupied,
                                 'collided':segment.collided,
                                 'segment':true,
-                                {{segment.type}}:true}"
+                                {{segment.segmentType}}:true}"
                      style="left:{{gridSize(segment.x)}};
                             top:{{gridSize(segment.y)}};
                             width:{{gridSize(1)}};
@@ -32,7 +32,7 @@
             <h1>What type of road do you want at {{segment().x}},{{segment().y}}?</h1>
             <input type="hidden" class="x" value="{{segment().x}}"/>
             <input type="hidden" class="y" value="{{segment().y}}"/>
-            <select class="segmentType" ng-model="segment().type" ng-options="s.value as s.name for s in segmentTypes">
+            <select class="segmentType" ng-model="segment().segmentType" ng-options="s.value as s.name for s in segmentTypes">
             </select>
             <select class="direction" ng-model="segment().direction" ng-options="d.value as d.name for d in directions">
             </select>
