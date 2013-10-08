@@ -4,6 +4,7 @@ import net.liftweb.http.{CometActor, ListenerManager}
 import net.liftweb.actor.{LAPinger, LiftActor}
 import net.liftweb.http.js.{JsCmd, JE}
 import net.liftweb.json.{DefaultFormats, JValue}
+import roadblock.lib.segments.SegmentState
 
 /**
  * User: denise
@@ -20,7 +21,7 @@ object Universe extends LiftActor with ListenerManager {
       updateListeners(t)
       LAPinger.schedule(this, Tick, 1000L)
     }
-    case s:String => {
+    case s:SegmentState => {
       updateListeners(s)
     }
   }

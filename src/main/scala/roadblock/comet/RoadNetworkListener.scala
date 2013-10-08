@@ -79,6 +79,9 @@ class RoadNetworkListener extends CometActor with CometListener {
 //  }
 
   override def lowPriority = {
+    case s: SegmentState => {
+      network.updateSegment(s)
+    }
     case _ => {
       network.segments.foreach(
         (f:RoadSegment) => {
