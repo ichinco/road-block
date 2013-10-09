@@ -27,6 +27,10 @@ object NetworkState {
   private implicit val formats = net.liftweb.json.DefaultFormats
 
   implicit def toJson(item : NetworkState) : JValue = {
-    "segments" -> item.segments.map(SegmentState(_))
+    "segments" -> item.segments.map((s: RoadSegment) => {
+      val state = SegmentState()
+      state.setBasedOnRoadSegment(s)
+      state
+    })
   }
 }
