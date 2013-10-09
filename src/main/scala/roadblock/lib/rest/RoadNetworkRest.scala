@@ -19,7 +19,7 @@ import roadblock.comet.Universe
 object RoadNetworkRest extends RestHelper {
 
   def addToUniverse(json : JValue) : JValue = {
-    Universe ! json.extract[SegmentState]
+    Universe ! SegmentState.fromJson(json)
     ("success" -> true) : JValue
   }
 

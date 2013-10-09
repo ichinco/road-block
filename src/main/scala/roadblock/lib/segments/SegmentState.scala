@@ -63,7 +63,12 @@ object SegmentState {
   def unapply(in: JValue): Option[SegmentState] = apply(in)
 
   def fromJson(in : JValue) : SegmentState = {
-
+    val state : SegmentState = SegmentState()
+    state.segmentType = (in \ "segmentType").extract[Symbol]
+    state.x = (in \ "x").extract[Int]
+    state.y = (in \ "y").extract[Int]
+    state.direction = (in \ "direction").extract[Symbol]
+    state
   }
 
   implicit def toJson(item: SegmentState): JValue = {

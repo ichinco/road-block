@@ -79,8 +79,9 @@ class BasicRoadNetwork extends RoadNetwork {
       newSegment.frontNeighbor.backNeighbor = newSegment
       newSegment.backNeighbor.frontNeighbor = newSegment
       segments =  segments diff Seq(oldSegment)
-      newSegment +: segments
+      segments = newSegment +: segments
     }
+    segments
   }
 
 }
