@@ -26,7 +26,9 @@ trait RoadSegment {
   var car : Car
 
   def tick(network:RoadNetwork) = {
-    this.car.tick(network)
+    if (this.car != null){
+      this.car.tick(network)
+    }
   }
 
   def initializeState() = {

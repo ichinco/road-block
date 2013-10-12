@@ -1,7 +1,7 @@
 package roadblock.lib.networks
 
 import roadblock.lib.interfaces.{RoadSegment, RoadNetwork}
-import roadblock.lib.segments.{StraightSegment, SegmentState}
+import roadblock.lib.segments._
 
 /**
  * User: denise
@@ -61,27 +61,58 @@ class BasicRoadNetwork extends RoadNetwork {
     localSegment
   }
 
-  def updateSegment(segmentState : SegmentState) {
-    val oldSegments = segments.filter((s : RoadSegment) => {
-      s.x.equals(segmentState.x) && s.y.equals(segmentState.y)
+  def getSegmentByCoordinates(x:Int, y:Int):RoadSegment = {
+    val matchingSegments = segments.filter((s : RoadSegment) => {
+      s.x.equals(x) && s.y.equals(y)
     })
-    if (oldSegments.size > 0) {
-      val oldSegment = oldSegments(0)
-      val newSegment : RoadSegment = new StraightSegment()
-      newSegment.x = segmentState.x
-      newSegment.y = segmentState.y
-      newSegment.leftSideNeighbor = oldSegment.leftSideNeighbor
-      newSegment.rightSideNeighbor = oldSegment.rightSideNeighbor
-      newSegment.frontNeighbor = oldSegment.frontNeighbor
-      newSegment.backNeighbor = oldSegment.backNeighbor
-      newSegment.leftSideNeighbor.rightSideNeighbor = newSegment
-      newSegment.rightSideNeighbor.leftSideNeighbor = newSegment
-      newSegment.frontNeighbor.backNeighbor = newSegment
-      newSegment.backNeighbor.frontNeighbor = newSegment
-      newSegment.initializeState()
-      segments =  segments diff Seq(oldSegment)
-      segments = newSegment +: segments
+
+    if (matchingSegments.size > 0){
+      matchingSegments(0)
+    } else {
+      new NullSegment()
     }
+  }
+
+  def updateSegment(segmentState : SegmentState) {
+    val oldSegment = getSegmentByCoordinates(segmentState.x, segmentState.y)
+    var newSegment : RoadSegment = new NullSegment()
+    if (segmentState.segmentType == 'straight) {
+      newSegment = new StraightSegment()
+    } else if (segmentState.segmentType == 'source) {
+      newSegment = new CarSource(3)
+    } else if (segmentState.segmentType == 'sink) {
+      newSegment = new CarSink()
+    }
+    newSegment.x = segmentState.x
+    newSegment.y = segmentState.y
+    if (segmentState.direction == 'left){
+      newSegment.frontNeighbor = getSegmentByCoordinates(segmentState.x-1, segmentState.y)
+      newSegment.backNeighbor = getSegmentByCoordinates(segmentState.x+1, segmentState.y)
+      newSegment.leftSideNeighbor = getSegmentByCoordinates(segmentState.x, segmentState.y-1)
+      newSegment.rightSideNeighbor = getSegmentByCoordinates(segmentState.x, segmentState.y+1)
+    } else if (segmentState.direction == 'right) {
+      newSegment.frontNeighbor = getSegmentByCoordinates(segmentState.x+1, segmentState.y)
+      newSegment.backNeighbor = getSegmentByCoordinates(segmentState.x-1, segmentState.y)
+      newSegment.leftSideNeighbor = getSegmentByCoordinates(segmentState.x, segmentState.y+1)
+      newSegment.rightSideNeighbor = getSegmentByCoordinates(segmentState.x, segmentState.y-1)
+    } else if (segmentState.direction == 'up) {
+      newSegment.frontNeighbor = getSegmentByCoordinates(segmentState.x, segmentState.y-1)
+      newSegment.backNeighbor = getSegmentByCoordinates(segmentState.x, segmentState.y+1)
+      newSegment.leftSideNeighbor = getSegmentByCoordinates(segmentState.x-1, segmentState.y)
+      newSegment.rightSideNeighbor = getSegmentByCoordinates(segmentState.x+1, segmentState.y)
+    }else if (segmentState.direction == 'down) {
+      newSegment.frontNeighbor = getSegmentByCoordinates(segmentState.x, segmentState.y+1)
+      newSegment.backNeighbor = getSegmentByCoordinates(segmentState.x, segmentState.y-1)
+      newSegment.leftSideNeighbor = getSegmentByCoordinates(segmentState.x+1, segmentState.y)
+      newSegment.rightSideNeighbor = getSegmentByCoordinates(segmentState.x-1, segmentState.y)
+    }
+    newSegment.leftSideNeighbor.rightSideNeighbor = newSegment
+    newSegment.rightSideNeighbor.leftSideNeighbor = newSegment
+    newSegment.frontNeighbor.backNeighbor = newSegment
+    newSegment.backNeighbor.frontNeighbor = newSegment
+    newSegment.initializeState()
+    segments =  segments diff Seq(oldSegment)
+    segments = newSegment +: segments
     segments
   }
 
