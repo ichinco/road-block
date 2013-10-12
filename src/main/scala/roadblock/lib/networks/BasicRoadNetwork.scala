@@ -76,7 +76,7 @@ class BasicRoadNetwork extends RoadNetwork {
   def updateSegment(segmentState : SegmentState) {
     val oldSegment = getSegmentByCoordinates(segmentState.x, segmentState.y)
     var newSegment : RoadSegment = new NullSegment()
-    if (segmentState.segmentType == 'straight) {
+    if (segmentState.segmentType == 'straight_segment) {
       newSegment = new StraightSegment()
     } else if (segmentState.segmentType == 'source) {
       newSegment = new CarSource(3)
