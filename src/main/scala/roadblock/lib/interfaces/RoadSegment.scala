@@ -35,13 +35,13 @@ trait RoadSegment {
     val initialState = new RoadState {
       def occupied: Boolean = false
 
-      def forwardMotionPermitted(): Boolean = frontNeighbor.segmentType!='no_segment
+      def forwardMotionPermitted(): Boolean = frontNeighbor.segmentType!='no_segment && frontNeighbor.segmentType!='empty_segment
 
-      def leftwardMotionPermitted(): Boolean = leftSideNeighbor.segmentType!='no_segment
+      def leftwardMotionPermitted(): Boolean = leftSideNeighbor.segmentType!='no_segment && leftSideNeighbor.segmentType!='empty_segment
 
-      def backwardMotionPermitted(): Boolean = backNeighbor.segmentType!='no_segment
+      def backwardMotionPermitted(): Boolean = backNeighbor.segmentType!='no_segment  && backNeighbor.segmentType!='empty_segment
 
-      def rightwardMotionPermitted(): Boolean = rightSideNeighbor.segmentType!='no_segment
+      def rightwardMotionPermitted(): Boolean = rightSideNeighbor.segmentType!='no_segment && rightSideNeighbor.segmentType!='empty_segment
 
       def collided: Boolean = false
     }
