@@ -27,7 +27,10 @@ class RoadNetworkListener extends CometActor with CometListener {
       (i:Int) => {
         (0 until 15).foreach (
           (j:Int) => {
-            val segment = new EmptySegment()
+            var segment : RoadSegment = new EmptySegment()
+            if (i == 0 || j == 0 || i == 14 || j == 14){
+              segment = new CarSink()
+            }
             segment.x = i
             segment.y = j
             segments.append(segment)
@@ -42,41 +45,6 @@ class RoadNetworkListener extends CometActor with CometListener {
     n.segments = segments.toList
     n
   }
-
-//  val network : RoadNetwork = {
-//    val segments : ListBuffer[RoadSegment] = ListBuffer()
-//    (0 to 10).foreach(
-//      (i : Int) => {
-//
-//        val segment = new StraightSegment()
-//        segment.x = 0
-//        segment.y = 11-i
-//
-//        if (i>0){
-//          val previous = segments(i-1)
-//          segment.backNeighbor = previous
-//          previous.frontNeighbor = segment
-//        }
-//
-//        segments.append(segment)
-//    })
-//    val source : RoadSegment = new CarSource(3)
-//    source.x = 0
-//    source.y = 12
-//    source.frontNeighbor = segments(0)
-//    segments(0).backNeighbor = source
-//    val sink : RoadSegment = new CarSink()
-//    sink.x=0
-//    sink.y=0
-//    sink.backNeighbor = segments(10)
-//    segments(10).frontNeighbor=sink
-//    segments.append(source)
-//    segments.append(sink)
-//    segments.foreach(f => f.initializeState())
-//    val n : RoadNetwork = new BasicRoadNetwork()
-//    n.segments = segments.toList
-//    n
-//  }
 
   override def lowPriority = {
     case s: SegmentState => {
