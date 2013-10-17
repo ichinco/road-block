@@ -82,6 +82,8 @@ class BasicRoadNetwork extends RoadNetwork {
       newSegment = new CarSource(3)
     } else if (segmentState.segmentType == 'sink) {
       newSegment = new CarSink()
+    } else if (segmentState.segmentType == 'intersection) {
+      newSegment = new Intersection()
     }
     newSegment.x = segmentState.x
     newSegment.y = segmentState.y

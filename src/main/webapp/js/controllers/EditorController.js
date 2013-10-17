@@ -3,7 +3,8 @@ function EditorController($scope, editorService) {
         {name:"straight road", value:"straight_segment"},
         {name:"none", value:"empty_segment"},
         {name:"car source", value:"source"},
-        {name:"car sink", value:"sink"}];
+        {name:"car sink", value:"sink"},
+        {name:"intersection", value:"intersection"}];
     $scope.directions = [
         {name:"up", value:"up"},
         {name:"down", value:"down"},
