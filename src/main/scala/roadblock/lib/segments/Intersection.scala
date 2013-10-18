@@ -15,17 +15,21 @@ class Intersection extends NotNullSegment {
 
   override def acceptCar(car:Car) = {
 
-    val topLeft : Seq[RoadSegment] = Random.shuffle(Seq(this.frontNeighbor, this.leftSideNeighbor))
-    val bottomRight : Seq[RoadSegment] = Random.shuffle(Seq(this.backNeighbor, this.rightSideNeighbor))
-    val newFront = topLeft(0)
-    val newLeft = topLeft(1)
-    val newBack = bottomRight(0)
-    val newRight = bottomRight(1)
+    val potentialForwards = Seq(this.frontNeighbor, this.backNeighbor,
+      this.leftSideNeighbor, this.rightSideNeighbor).filter(
+        neighbor =>  {
+          neighbor.backNeighbor.equals(this)
+        }
+    )
 
-    this.frontNeighbor = newFront
-    this.backNeighbor = newBack
-    this.leftSideNeighbor = newLeft
-    this.rightSideNeighbor = newRight
+    if (potentialForwards.size > 0) {
+      val newFront = potentialForwards(0)
+
+      this.leftSideNeighbor = if (this.leftSideNeighbor == newFront) this.frontNeighbor else this.leftSideNeighbor
+      this.rightSideNeighbor = if (this.rightSideNeighbor == newFront) this.frontNeighbor else this.rightSideNeighbor
+      this.backNeighbor = if (this.backNeighbor == newFront) this.frontNeighbor else this.backNeighbor
+      this.frontNeighbor = newFront
+    }
 
     super.acceptCar(car)
   }
